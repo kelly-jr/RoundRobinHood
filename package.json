@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@types/node": "^16.4.13",
 		"nodemon": "^2.0.12",
+		"prettier-plugin-organize-imports": "^2.3.3",
 		"ts-node": "^10.2.0",
 		"typescript": "^4.3.5"
 	},
@@ -24,5 +25,12 @@
 		"@mikro-orm/migrations": "^4.5.7",
 		"@mikro-orm/postgresql": "^4.5.7",
 		"pg": "^8.7.1"
+	},
+	"mikro-orm": {
+		"useTsNode": true,
+		"configPaths": [
+			"./src/mikro-orm.config.ts",
+			"./dist/mikro-orm.config.js"
+		]
 	}
 }
