@@ -10,8 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Session = void 0;
-const core_1 = require("@mikro-orm/core");
-const constants_1 = require("src/constants");
+const typeorm_1 = require("typeorm");
 let Session = class Session {
     constructor() {
         this.createdAt = new Date();
@@ -19,36 +18,27 @@ let Session = class Session {
     }
 };
 __decorate([
-    core_1.PrimaryKey(),
-    __metadata("design:type", String)
-], Session.prototype, "_id", void 0);
-__decorate([
-    core_1.SerializedPrimaryKey(),
-    __metadata("design:type", String)
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
 ], Session.prototype, "id", void 0);
 __decorate([
-    core_1.Property(),
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Session.prototype, "createdAt", void 0);
 __decorate([
-    core_1.Property({ onUpdate: () => new Date() }),
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Session.prototype, "updatedAt", void 0);
 __decorate([
-    core_1.Property(),
+    typeorm_1.Column(),
     __metadata("design:type", String)
 ], Session.prototype, "joiningCode", void 0);
 __decorate([
-    core_1.Property({
-        onCreate: () => {
-            const currentTime = new Date();
-            return currentTime.getTime() + constants_1.DEFAULT_SESSION_EXPIRY;
-        },
-    }),
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Session.prototype, "sessionExpiry", void 0);
 Session = __decorate([
-    core_1.Entity()
+    typeorm_1.Entity()
 ], Session);
 exports.Session = Session;
 //# sourceMappingURL=Session.js.map

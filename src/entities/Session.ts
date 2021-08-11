@@ -1,28 +1,26 @@
-import { Entity, SerializedPrimaryKey, Property, PrimaryKey } from "@mikro-orm/core";
-import { DEFAULT_SESSION_EXPIRY } from "src/constants";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Session {
-  @PrimaryKey()
-  _id!: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @SerializedPrimaryKey()
-  id!: string;
-
-  @Property()
+  @Column()
   createdAt: Date = new Date();
 
-  @Property({ onUpdate: () => new Date() })
+  // @Property({ onUpdate: () => new Date() })
+  @Column()
   updatedAt: Date = new Date();
 
-  @Property()
+  @Column()
   joiningCode!: string;
 
-  @Property({
-    onCreate: () => {
-      const currentTime = new Date();
-      return currentTime.getTime() + DEFAULT_SESSION_EXPIRY;
-    },
-  })
-  sessionExpiry!: Date;
+  // @Property({
+  //   onCreate: () => {
+  //     const currentTime = new Date();
+  //     return currentTime.getTime() + DEFAULT_SESSION_EXPIRY;
+  //   },
+  // })
+  @Column()
+  sessionExpiry: Date;
 }

@@ -18,25 +18,10 @@ With postgres installed, Create a table `roundrobinhood` which for the moment us
 
 ## Running the project
 
-There are 2 ways to run the project. The first method is the preferred method and provides a faster compile time:
-
-1.Using two terminals, watch for typescript changes, and run the compiled js file
-
-```
-# First terminal
-yarn watch
-
-#Second terminal
-yarn dev
-
-```
-
-2. Using the 2nd start which uses `ts-node` to run the ts file
-
-```
-yarn start2
-```
+To run the app, run `yarn start`
 
 ## Reference Material
 
-MIKRORM - https://mikro-orm.io/docs/installation
+The list below shows a list of all the reference materials used in this project
+
+- [TypeORM](https://typeorm.io/#/) - This ORM was preferred over MikrORM, though the two are very similar and interchangeable in alot of ways.
