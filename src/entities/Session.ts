@@ -20,12 +20,6 @@ export class Session {
   @Column()
   joiningCode!: string;
 
-  // @Property({
-  //   onCreate: () => {
-  //     const currentTime = new Date();
-  //     return currentTime.getTime() + DEFAULT_SESSION_EXPIRY;
-  //   },
-  // })
   @Field(() => Date)
   @Column()
   sessionExpiry: Date;
