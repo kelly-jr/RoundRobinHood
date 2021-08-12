@@ -1,26 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Field, ID, ObjectType } from "type-graphql";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
+@ObjectType({ description: "Model for the round robin meeting session" })
 export class Session {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @Field(() => ID)
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-  @Column()
-  createdAt: Date = new Date();
+  @Field(() => Date)
+  @CreateDateColumn()
+  createdAt: Date;
 
-  // @Property({ onUpdate: () => new Date() })
-  @Column()
-  updatedAt: Date = new Date();
+  @Field(() => Date)
+  @UpdateDateColumn()
+  updatedAt: Date;
 
+  @Field(() => String)
   @Column()
   joiningCode!: string;
 
-  // @Property({
-  //   onCreate: () => {
-  //     const currentTime = new Date();
-  //     return currentTime.getTime() + DEFAULT_SESSION_EXPIRY;
-  //   },
-  // })
+  @Field(() => Date)
   @Column()
   sessionExpiry: Date;
 }
