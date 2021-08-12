@@ -18,10 +18,14 @@ With postgres installed, Create a table `roundrobinhood` which for the moment us
 
 ## Running the project
 
-To run the app, run `yarn start`
+1. To run the app, run `yarn start`
+
+2. Once you have the project started, you would like to view the endpoints and queries that you're building / create with GraphQL. To do so:
+   Navigate to `localhost:4000/graphql` on you browser
 
 ## Reference Material
 
 The list below shows a list of all the reference materials used in this project
 
 - [TypeORM](https://typeorm.io/#/) - This ORM was preferred over MikrORM, though the two are very similar and interchangeable in alot of ways.
+- [Apollo GraphQL with Typescript](https://www.apollographql.com/docs/react/development-testing/static-typing/) - The documentation will guide you to working with GraphQL in Typescript
