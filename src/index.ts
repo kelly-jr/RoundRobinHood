@@ -4,20 +4,16 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import ormconfig from "./ormconfig";
-import { HelloResolver } from "./resolvers/hello";
+import { SessionResolver } from "./resolvers";
 
 const main = async () => {
-  // Creates database connection
-  createConnection(ormconfig)
-    .then(() => {
-      // here you can start to work with your entities
-    })
-    .catch((error) => console.log(error));
+  const orm = await createConnection(ormconfig);
 
   const app = express();
 
   const apolloServer = new ApolloServer({
-    schema: await buildSchema({ resolvers: [HelloResolver], validate: false }),
+    schema: await buildSchema({ resolvers: [SessionResolver], validate: false }),
+    context: () => ({ orm }),
   });
 
   await apolloServer.start();
@@ -27,6 +23,19 @@ const main = async () => {
   app.listen(4000, () => {
     console.log("%cServer started on localhost:4000", "color: green");
   });
+
+  // Create dummy record
+  // orm
+  //   .createQueryBuilder()
+  //   .insert()
+  //   .into(Session)
+  //   .values([
+  //     {
+  //       joiningCode: "test_code",
+  //       sessionExpiry: new Date(),
+  //     },
+  //   ])
+  //   .execute();
 };
 
 main();

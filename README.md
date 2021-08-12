@@ -28,4 +28,4 @@ With postgres installed, Create a table `roundrobinhood` which for the moment us
 The list below shows a list of all the reference materials used in this project
 
 - [TypeORM](https://typeorm.io/#/) - This ORM was preferred over MikrORM, though the two are very similar and interchangeable in alot of ways.
-- [Apollo GraphQL with Typescript](https://www.apollographql.com/docs/react/development-testing/static-typing/) - The documentation will guide you to working with GraphQL in Typescript
+- [TypeGraphQL](https://typegraphql.com/) - The documentation will guide you to working with GraphQL in Typescript
