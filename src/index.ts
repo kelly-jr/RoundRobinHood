@@ -13,7 +13,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({ resolvers: [SessionResolver], validate: false }),
-    context: () => ({ orm }),
+    context: () => ({ orm: orm.manager }),
   });
 
   await apolloServer.start();
