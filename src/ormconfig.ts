@@ -11,6 +11,12 @@ export default {
   synchronize: true,
   logging: !__prod__,
   entities: ["src/entities/**/*.ts"],
-  migrations: ["src/migration/**/*.ts"],
+  migrations: ["migration/**/*.ts"],
+
   subscribers: ["src/subscriber/**/*.ts"],
+  cli: {
+    entitiesDir: "src/entities",
+    migrationsDir: "migration",
+  },
+  migrationsRun: true,
 } as Parameters<typeof createConnection>[0];

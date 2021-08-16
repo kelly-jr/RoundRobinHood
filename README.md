@@ -23,6 +23,21 @@ With postgres installed, Create a table `roundrobinhood` which for the moment us
 2. Once you have the project started, you would like to view the endpoints and queries that you're building / create with GraphQL. To do so:
    Navigate to `localhost:4000/graphql` on you browser
 
+### Running migrations
+
+To get upto date with typeORM migration, how to create and run them, follow the [documentation](https://typeorm.io/#/migrations/) reference.
+
+- To generate migrations:
+
+```
+yarn typeorm migration:generate -n ${nameOfMigration}
+```
+
+- To run the migrations:
+  ```
+  yarn typeorm migration:run
+  ```
+
 ## Reference Material
 
 The list below shows a list of all the reference materials used in this project
