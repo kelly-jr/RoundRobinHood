@@ -4,7 +4,8 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import ormconfig from "./ormconfig";
-import { SessionResolver } from "./resolvers";
+import { SessionResolver, UserResolver } from "./resolvers";
+
 
 const main = async () => {
   const orm = await createConnection(ormconfig);
@@ -12,7 +13,7 @@ const main = async () => {
   const app = express();
 
   const apolloServer = new ApolloServer({
-    schema: await buildSchema({ resolvers: [SessionResolver], validate: false }),
+    schema: await buildSchema({ resolvers: [SessionResolver, UserResolver], validate: false }),
     context: () => ({ orm }),
   });
 
