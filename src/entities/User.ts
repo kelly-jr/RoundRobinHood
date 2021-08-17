@@ -22,7 +22,7 @@ export class User {
   name: String;
   
   @Field(() => Boolean)
-  @Column()
+  @Column({ default: false })
   isSessionAdmin: Boolean;
   
   @ManyToOne(() => Session, session => session.id)
