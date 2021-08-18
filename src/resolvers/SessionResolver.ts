@@ -17,37 +17,45 @@ export class SessionResolver {
   // Read all session
   @Query(() => [Session])
   sessions(@Ctx() { orm }: MyContext): Promise<Session[]> {
-    return orm.find(Session, {});
+    const manager = orm.manager;
+    return manager.find(Session, {});
   }
 
   // Read 1 session
   @Query(() => Session, { nullable: true })
   session(@Arg("id", () => String) id: string, @Ctx() { orm }: MyContext): Promise<Session | undefined> {
-    return orm.findOne(Session, { id });
+    const manager = orm.manager;
+    return manager.findOne(Session, { id });
   }
 
   // Create
   @Mutation(() => Session)
   createSession(@Arg("options") options: SessionInput, @Ctx() { orm }: MyContext): Promise<Session> {
+    const manager = orm.manager;
+
     const userOptions = options.sessionExpiry
       ? { ...options, sessionExpiry: setSessionExpiryTimeStamp(options.sessionExpiry) }
       : { ...options };
-    const session = orm.create(Session, userOptions);
+    const session = manager.create(Session, userOptions);
 
-    return orm.save(session);
+    return manager.save(session);
   }
 
   // Update
   // You can only update the session expiry time
   @Mutation(() => Session)
   async updateSession(@Arg("id") id: string, @Arg("sessionExpiry") sessionExpiry: number, @Ctx() { orm }: MyContext) {
-    return orm.update(Session, { id }, { sessionExpiry: setSessionExpiryTimeStamp(sessionExpiry) }).then(() => orm.findOne(Session, id));
+    const manager = orm.manager;
+    return manager
+      .update(Session, { id }, { sessionExpiry: setSessionExpiryTimeStamp(sessionExpiry) })
+      .then(() => manager.findOne(Session, id));
   }
 
   // Delete
   @Mutation(() => Boolean)
   deleteSession(@Arg("id") id: string, @Ctx() { orm }: MyContext) {
-    return orm
+    const manager = orm.manager;
+    return manager
       .delete(Session, id)
       .catch(() => false)
       .then(() => true);

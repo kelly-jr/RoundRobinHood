@@ -13,7 +13,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({ resolvers: [SessionResolver], validate: false }),
-    context: () => ({ orm: orm.manager }),
+    context: () => ({ orm }),
   });
 
   await apolloServer.start();
@@ -23,19 +23,6 @@ const main = async () => {
   app.listen(4000, () => {
     console.log("%cServer started on localhost:4000", "color: green");
   });
-
-  // Create dummy record
-  // orm
-  //   .createQueryBuilder()
-  //   .insert()
-  //   .into(Session)
-  //   .values([
-  //     {
-  //       joiningCode: "test_code",
-  //       sessionExpiry: new Date(),
-  //     },
-  //   ])
-  //   .execute();
 };
 
 main();
