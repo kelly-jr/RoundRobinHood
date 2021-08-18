@@ -1,6 +1,6 @@
 import { SESSION_DURATION_IN_HRS } from "../constants";
 
-export const setSessionExpiryTimeStamp = () => {
+export const setSessionExpiryTimeStamp = (numberOfHrs: number = SESSION_DURATION_IN_HRS) => {
   const currentTime = new Date();
-  return currentTime.setHours(currentTime.getHours() + SESSION_DURATION_IN_HRS);
+  return new Date(currentTime.setHours(currentTime.getHours() + numberOfHrs));
 };

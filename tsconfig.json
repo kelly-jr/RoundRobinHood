@@ -6,7 +6,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -17,12 +16,23 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "rootDir": "./src",
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "rootDir": "src"
+    "baseUrl": "." /* Base directory to resolve non-absolute module names. */,
+    "paths": {
+      "src/*": ["./src/*"]
+    } /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
+
+    "typeRoots": ["./node_modules/@types", "src/types"] /* List of folders to include type definitions from. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+
+    /* Source Map Options */
+    "sourceRoot": "/" /* Specify the location where debugger should locate TypeScript files instead of source locations. */
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts"]
