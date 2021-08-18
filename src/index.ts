@@ -24,19 +24,6 @@ const main = async () => {
   app.listen(4000, () => {
     console.log("%cServer started on localhost:4000", "color: green");
   });
-
-  // Create dummy record
-  // orm
-  //   .createQueryBuilder()
-  //   .insert()
-  //   .into(Session)
-  //   .values([
-  //     {
-  //       joiningCode: "test_code",
-  //       sessionExpiry: new Date(),
-  //     },
-  //   ])
-  //   .execute();
 };
 
 main();
