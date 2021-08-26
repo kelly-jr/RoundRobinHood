@@ -1,7 +1,6 @@
 import { Field, ID, ObjectType } from "type-graphql";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
-import { setSessionExpiryTimeStamp } from "../utility/sessionFunctions";
 
 @Entity()
 @ObjectType({ description: "Model for the round robin meeting session" })
@@ -23,10 +22,10 @@ export class Session {
   joiningCode!: string;
 
   @Field(() => Date)
-  @Column({ default: setSessionExpiryTimeStamp() })
+  @Column()
   sessionExpiry: Date;
-  
-  @OneToMany(() => User, user => user.id, { cascade: true })
+
+  @OneToMany(() => User, (user) => user.id, { cascade: true })
   @Field(() => [User])
   users: User[];
 }
