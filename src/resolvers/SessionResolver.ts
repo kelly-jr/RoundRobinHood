@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { MyContext } from "src/types";
 import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver } from "type-graphql";
 import { Session } from "../entities";
@@ -5,7 +6,7 @@ import { setSessionExpiryTimeStamp } from "../utility/sessionFunctions";
 
 @InputType()
 class SessionInput {
-  @Field()
+  @Field({ nullable: true })
   joiningCode: string;
 
   @Field({ nullable: true })
@@ -33,9 +34,10 @@ export class SessionResolver {
   createSession(@Arg("options") options: SessionInput, @Ctx() { orm }: MyContext): Promise<Session> {
     const manager = orm.manager;
 
-    const userOptions = options.sessionExpiry
-      ? { ...options, sessionExpiry: setSessionExpiryTimeStamp(options.sessionExpiry) }
-      : { ...options };
+    let userOptions = { ...options, sessionExpiry: setSessionExpiryTimeStamp(options.sessionExpiry) };
+
+    if (!options.joiningCode) userOptions = { ...userOptions, joiningCode: nanoid(12) };
+
     const session = manager.create(Session, userOptions);
 
     return manager.save(session);
