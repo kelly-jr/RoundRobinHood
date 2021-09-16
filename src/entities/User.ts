@@ -18,7 +18,7 @@ export class User {
   updatedAt: Date;
  
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   name: String;
   
   @Field(() => Boolean)
